@@ -1,4 +1,4 @@
-# de-project-sprint-2-2023
+# Course "Data engineer" Project 1
 
 ### step 1 - connect to database
 
