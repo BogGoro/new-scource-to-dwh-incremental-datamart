@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS dwh.customer_report_datamart;
-CREATE TABLE IF NOT EXISTS dwh.craftsman_report_datamart (
+CREATE TABLE IF NOT EXISTS dwh.customer_report_datamart (
     id BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
     customer_id BIGINT NOT NULL,
     customer_name VARCHAR NOT NULL,
