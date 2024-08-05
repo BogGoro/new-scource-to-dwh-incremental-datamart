@@ -6,8 +6,8 @@
 
 ### step 3 - add the new source to data loading to dwh script SQL_crat_market_loading_data_to_DWH.sql
 
-### step 4 - study requested view
+### step 4 - study requested data mart
 
-### step 5 - write a dll for a new view DLL_crat_market_customer_view.sql
+### step 5 - write a dll for a new data mart DLL_crat_market_customer_data_mart.sql
 
-### step 6 - write a script for incremental view refreshing SQL_crat_market_incremental_customer_view_refreshing.sql
+### step 6 - write a script for incremental data mart refreshing SQL_crat_market_incremental_customer_data_mart_refreshing.sql
