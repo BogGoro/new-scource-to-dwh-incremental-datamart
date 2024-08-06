@@ -57,8 +57,8 @@ dwh_delta_insert_result AS (
             FROM (
                 SELECT
                         *,
-                        RANK() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC) AS rank_count_product_for_type,
-                        RANK() OVER(PARTITION BY T2.customer_id ORDER BY T4.count_product_for_craftsman DESC) AS rank_count_product_for_craftsman
+                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC) AS rank_count_product_for_type,
+                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T4.count_product_for_craftsman DESC) AS rank_count_product_for_craftsman
                         FROM ( 
                             SELECT
                                 T1.customer_id AS customer_id,
@@ -123,8 +123,8 @@ dwh_delta_update_result AS (
             FROM (
                 SELECT
                         *,
-                        RANK() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC) AS rank_count_product_for_type,
-                        RANK() OVER(PARTITION BY T2.customer_id ORDER BY T4.count_product_for_craftsman DESC) AS rank_count_product_for_craftsman
+                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC) AS rank_count_product_for_type,
+                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T4.count_product_for_craftsman DESC) AS rank_count_product_for_craftsman
                         FROM (
                             SELECT
                                 T1.customer_id AS customer_id,
