@@ -57,8 +57,7 @@ dwh_delta_insert_result AS (
             FROM (
                 SELECT
                         *,
-                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC) AS rank_count_product_for_type,
-                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T4.count_product_for_craftsman DESC) AS rank_count_product_for_craftsman
+                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC, T4.count_product_for_craftsman DESC) AS rank_for_top
                         FROM ( 
                             SELECT
                                 T1.customer_id AS customer_id,
@@ -98,7 +97,7 @@ dwh_delta_insert_result AS (
                                                 GROUP BY dd.customer_id, dd.craftsman_id
                                                     ORDER BY count_product_for_craftsman DESC) AS T4 ON T2.customer_id = T4.customer_id_for_craftsman
 
-                ) AS T5 WHERE T5.rank_count_product_for_type = 1 AND T5.rank_count_product_for_craftsman = 1 ORDER BY report_period
+                ) AS T5 WHERE T5.rank_for_top = 1 ORDER BY report_period
 ),
 dwh_delta_update_result AS (
     SELECT 
@@ -123,8 +122,7 @@ dwh_delta_update_result AS (
             FROM (
                 SELECT
                         *,
-                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC) AS rank_count_product_for_type,
-                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T4.count_product_for_craftsman DESC) AS rank_count_product_for_craftsman
+                        ROW_NUMBER() OVER(PARTITION BY T2.customer_id ORDER BY T3.count_product_for_type DESC, T4.count_product_for_craftsman DESC) AS rank_for_top
                         FROM (
                             SELECT
                                 T1.customer_id AS customer_id,
@@ -183,7 +181,7 @@ dwh_delta_update_result AS (
                                                 GROUP BY dd.customer_id, dd.craftsman_id
                                                     ORDER BY count_product_for_craftsman DESC) AS T4 ON T2.customer_id = T4.customer_id_for_craftsman
 
-                ) AS T5 WHERE T5.rank_count_product_for_type = 1 AND T5.rank_count_product_for_craftsman = 1 ORDER BY report_period
+                ) AS T5 WHERE T5.rank_for_top = 1 ORDER BY report_period
 ),
 insert_delta AS (
     INSERT INTO dwh.customer_report_datamart (
