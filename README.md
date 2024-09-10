@@ -8,8 +8,8 @@
 
 ### step 4 - study requested data mart
 
-### step 5 - write a dll for a new data mart DDL_crat_market_customer_data_mart.sql
+### step 5 - write a ddl for a new data mart DDL_crat_market_customer_data_mart.sql
 
-### step 5.1 - write a dll for load dates in customer datamart DDL_craft_market_load_dates_customer_report_datamart.sql
+### step 5.1 - write a ddl for load dates in customer datamart DDL_craft_market_load_dates_customer_report_datamart.sql
 
 ### step 6 - write a script for incremental data mart refreshing SQL_crat_market_incremental_customer_data_mart_refreshing.sql
